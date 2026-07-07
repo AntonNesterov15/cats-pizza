@@ -162,7 +162,7 @@ export function CheckoutPage() {
         {error && <p className="page-card__error">{error}</p>}
 
         <button
-          type="submit"
+          type="submit"          
           className="page-card__submit"
           disabled={state.items.length === 0 || isSubmitting}>
           Подтвердить заказ

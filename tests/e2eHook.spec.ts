@@ -28,7 +28,7 @@ test.describe('Auth', () => {
     await page.getByLabel('Email').fill(TEST_USER_EMAIL);
     await page.getByLabel('Пароль').fill(TEST_USER_PASSWORD);
     await page.getByTestId('signInOrSignUpButton').click();
-    expect(page.getByTestId('signOutButton')).toBeVisible();
+    await expect(page.getByTestId('signOutButton')).toBeVisible();
   });
 
   test('Sign up', async ({ page }) => {
@@ -43,7 +43,7 @@ test.describe('Auth', () => {
     await page.getByLabel('Пароль:', { exact: true }).fill(TEST_USER_PASSWORD);
     await page.getByLabel('Повторите пароль:', { exact: true }).fill(TEST_USER_PASSWORD);
     await page.getByTestId('signInOrSignUpButton').click();
-    expect(page.getByTestId('signOutButton')).toBeVisible();
+    await expect(page.getByTestId('signOutButton')).toBeVisible();
   });
 });
 

@@ -1,6 +1,6 @@
 import { expect, type Page } from '@playwright/test';
 
-export class OrderPage {
+export class OrdersPage {
   constructor(private page: Page) {
     this.page = page;
   }

@@ -2,14 +2,14 @@ import { test as base } from '@playwright/test';
 import { HomePage } from '../pom/pages/HomePage';
 import { AuthModal } from '../pom/pages/AuthModal';
 import { CheckoutPage } from '../pom/pages/CheckoutPage';
-import { OrderPage } from '../pom/pages/OrderPage';
+import { OrdersPage } from '../pom/pages/OrderPage';
 
 // Declare the types of your fixtures.
 type MyFixtures = {
   homePage: HomePage;
   authPage: AuthModal;
   checkoutPage: CheckoutPage;
-  orderPage: OrderPage
+  ordersPage: OrdersPage
 };
 
 // Extend base test by providing "todoPage" and "settingsPage".
@@ -27,8 +27,8 @@ export const test = base.extend<MyFixtures>({
     const checkoutPage = new CheckoutPage(page);    
     await use(checkoutPage);
   },
-  orderPage: async ({ page }, use) => {    
-    const orderPage = new OrderPage(page);    
+  ordersPage: async ({ page }, use) => {    
+    const orderPage = new OrdersPage(page);    
     await use(orderPage);
   },
 });

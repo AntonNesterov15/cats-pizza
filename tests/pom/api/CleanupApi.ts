@@ -1,6 +1,6 @@
 import {APIRequestContext} from '@playwright/test'
 
-export class CleaupApi {
+export class CleanupApi {
   constructor(
     private request: APIRequestContext,
     private apiURL: string = 'http://localhost:3001/api',

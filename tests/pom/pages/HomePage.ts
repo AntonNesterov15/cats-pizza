@@ -21,8 +21,8 @@ export class HomePage {
   }
 
   async goToCheckoutFromCart() {
-    await this.openCart;
-    await this.goToCartPage;
+    await this.openCart();
+    await this.goToCartPage();
     await this.page.getByTestId('makeOrderButton').click();
   }
 

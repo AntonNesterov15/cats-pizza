@@ -3,7 +3,7 @@ import { useCart } from '../cart/CartContext';
 import { useAuth } from '../auth/AuthContext';
 import { useAuthModal } from '../components/auth/AuthModalProvider';
 import { CheckoutModal } from '../components/auth/CheckoutModal';
-import './CartPage.css';
+
 
 export function CartPage() {
   const { state, changeQuantity, removeItem, clearCart } = useCart();
@@ -49,6 +49,7 @@ export function CartPage() {
                         −
                       </button>
                       <input
+                        data-testid="itemCounter"
                         type="number"
                         min={1}
                         value={item.quantity}
@@ -57,6 +58,7 @@ export function CartPage() {
                         }
                       />
                       <button
+                        data-testid="quantity-increment"
                         type="button"
                         onClick={() => changeQuantity(item.id, item.quantity + 1)}>
                         +

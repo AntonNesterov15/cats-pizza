@@ -29,4 +29,16 @@ export class CheckoutPage {
     await expect(this.page.getByTestId('modalTitle')).toHaveText('Заказ оформлен');
     await this.page.getByTestId('closeSubmittedModalButton').click();
   }
+
+  async submitWithoutAdress() {
+    await this.page.getByTestId('approveOrder').click();    
+  }
+
+  async assertChechoutOpened() {
+    await expect(this.page.getByTestId('modalTitle')).toHaveText('Оформление доставки');
+  }
+
+  async assertValidationError(message: string) {
+    await expect(this.page.getByText(message)).toBeVisible();
+  }
 }

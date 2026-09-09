@@ -2,7 +2,7 @@ import type { FormEvent } from 'react';
 import { useState } from 'react';
 import { useCart } from '../cart/CartContext';
 import { useAuth } from '../auth/AuthContext';
-import './Forms.css';
+
 
 export function CheckoutPage() {
   const { state, clearCart } = useCart();

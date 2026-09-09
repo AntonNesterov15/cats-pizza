@@ -34,9 +34,11 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+    { name: 'setup', testMatch: /.*\.setup\.ts/ },
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      dependencies: ['setup']      
     },
 
     /* Test against mobile viewports. */
@@ -68,7 +70,7 @@ export default defineConfig({
       reuseExistingServer: !process.env.CI,
     },
     {
-      command: 'npm run dev-- --host 127.0.0.1 --port 5173',
+      command: 'npm run dev -- --host 127.0.0.1 --port 5173',
       url: 'http://127.0.0.1:5173',
       reuseExistingServer: !process.env.CI,
     },

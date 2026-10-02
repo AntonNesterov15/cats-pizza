@@ -1,6 +1,6 @@
 import { guestTest as test } from '../../fixtures/app.fixture';
 
-test('Catalog opens and show cards', async ({ homePage }) => {
+test('Catalog opens and show carts', async ({ homePage }) => {
   await homePage.open();
   await homePage.assertLoaded();
   await homePage.assertCardsVisible();

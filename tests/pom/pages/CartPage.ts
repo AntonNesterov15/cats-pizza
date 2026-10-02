@@ -1,4 +1,5 @@
-import { expect, type Page } from '@playwright/test'
+import { expect, type Page } from '@playwright/test';
+import { CartApi } from '../api/mockApi/CartApi';
 
 export class CartPage {
   constructor(private page: Page) {
@@ -8,6 +9,28 @@ export class CartPage {
   async open() {
     await this.page.goto('/cart');
   }
+
+  async setupApiEmptyCart() {
+    const cartApi = new CartApi(this.page);
+    await cartApi.setEmtyCart();
+  }
+
+  async setupApiWithOneItem() {
+    const cartApi = new CartApi(this.page);
+    await cartApi.setCartWithOneItem();
+  }
+
+  async removeFirstItem() {
+    await this.page.getByRole('button', { name: 'Удалить' }).first().click();
+  }
+  async clear() {
+    await this.page.getByRole('button', { name: /очистить корзину/i }).click();
+  }
+  async addOneMoreSameCat() {
+    await this.page.getByTestId('itemCounter').waitFor({ state: 'visible' });
+    await this.page.getByTestId('quantity-increment').click();
+  }
+
   async assertEmply() {
     await expect(
       this.page.getByText('Корзина пуста. Добавьте котика с главной страницы.'),
@@ -16,14 +39,10 @@ export class CartPage {
   async assertCatCounter(value: string) {
     await expect(this.page.getByTestId('itemCounter')).toHaveValue(value);
   }
-  async removeFirstItem() {
-    await this.page.getByRole('button', { name: 'Удалить' }).first().click();
+  async assertHasCorrectViewWithOneItem() {
+    await expect(this.page).toHaveScreenshot('cartWithOneItem.png');
   }
-  async clear() {
-    await this.page.getByRole('button', { name: 'Очистить корзину' }).click();
-  }
-  async addOneMoreSameCat() {
-    await this.page.getByTestId('itemCounter').waitFor({ state: 'visible' });
-    await this.page.getByTestId('quantity-increment').click();
+   async assertHasCorrectEmptyView() {
+    await expect(this.page).toHaveScreenshot('emptyCart.png');
   }
 }

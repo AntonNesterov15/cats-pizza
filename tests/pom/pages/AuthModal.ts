@@ -5,6 +5,10 @@ export class AuthModal {
     this.page = page;
   }
 
+  private getModalLocator() {
+    return this.page.getByTestId('modal');
+  }
+
   async open() {
     await this.page.getByTestId('signInButton').click();
   }
@@ -33,8 +37,13 @@ export class AuthModal {
   async assertSignedIn () {
     await expect(this.page.getByTestId('signOutButton')).toBeVisible();
   }
-
   async assertError(message: string) {
     await expect(this.page.getByText(message)).toBeVisible();
+  }
+  async assertSignInModalHasCorrectView() {
+    await expect(this.getModalLocator()).toHaveScreenshot('sungInModal.png');
+  }
+  async assertSignUpModalHasCorrectView() {
+    await expect(this.getModalLocator()).toHaveScreenshot('sungUpModal.png');
   }
 }
